@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongo:4.4.22
+    container_name: "mongodb"
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - $HOME/.docker-data/mongodb-data:/data/db
