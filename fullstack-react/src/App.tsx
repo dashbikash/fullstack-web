@@ -1,15 +1,15 @@
-import { MantineProvider, MantineThemeOverride, Text } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
 import MyShellV2 from './experiment/MyShellV2';
 
-import { DeepPurpleTheme, DeepRedTheme, DefaultTheme, TealTheme } from "./Themes";
+import { DefaultTheme } from "./Themes";
 
-import { BrowserRouter, Routes, Route, HashRouter, Navigate } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import AuthGuard from './components/AuthGuard';
 import Dashboard from './pages/Dashboard';
-import Settings from './pages/Settings';
-import NotFound from './pages/errors';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
-import AuthGuard from './components/AuthGuard';
+import Settings from './pages/Settings';
+import NotFound from './pages/errors';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             <Route index element={<Navigate to="/app" />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/app" element={<AuthGuard component={<MyShellV2 />}/>}>
+            <Route path="/app" element={<AuthGuard component={<MyShellV2 />} />}>
               <Route index element={<Dashboard />} />
               <Route path="settings/ui" element={<Settings />} />
             </Route>

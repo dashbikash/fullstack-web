@@ -16,7 +16,7 @@ import { useState } from 'react';
 
 import { FaSearch, FaUserCircle } from 'react-icons/fa';
 import { MdAnalytics, MdCategory, MdDashboard, MdLabel, MdLogout, MdManageAccounts, MdSettings } from "react-icons/md";
-import { Link, Outlet, matchPath, useLocation } from 'react-router-dom';
+import { Link, Outlet, matchPath, useLocation, useNavigate } from 'react-router-dom';
 
 
 const useStyles = createStyles((theme) => ({
@@ -90,6 +90,7 @@ export default function MyShellV2() {
     const theme = useMantineTheme();
     const [opened, setOpened] = useState(false);
     const location = useLocation();
+    const navigate=useNavigate();
     return (
         <AppShell
             layout='default'
@@ -190,8 +191,11 @@ export default function MyShellV2() {
 
                                     <Menu.Item
                                         icon={<MdLogout size={rem(14)} />}
-                                        component="a"
-                                        href="https://mantine.dev"
+                                        component="button"
+                                        onClick={(e:any)=>{
+                                            localStorage.clear();
+                                            navigate("/");
+                                        }}
                                     >
                                         Sign out
                                     </Menu.Item>

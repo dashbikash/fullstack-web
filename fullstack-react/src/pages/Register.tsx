@@ -1,4 +1,4 @@
-import { TextInput, Textarea, SimpleGrid, Group, Title, Button, Stack } from '@mantine/core';
+import { Button, Container, PasswordInput, Stack, TextInput, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
 
 export function Register() {
@@ -6,18 +6,19 @@ export function Register() {
     initialValues: {
       name: '',
       email: '',
-      subject: '',
-      message: '',
+      password: '',
+      confirmpassword: '',
     },
     validate: {
       name: (value) => value.trim().length < 2,
       email: (value) => !/^\S+@\S+$/.test(value),
-      subject: (value) => value.trim().length === 0,
+      password: (value) => value.trim().length === 0,
     },
   });
 
   return (
-    <form onSubmit={form.onSubmit(() => {})}>
+    <Container size={'sm'}>
+      <form onSubmit={form.onSubmit(() => {})}>
       <Title
         order={2}
         size="h1"
@@ -25,11 +26,10 @@ export function Register() {
         fw={900}
         ta="center"
       >
-        Get in touch
+        User Registration
       </Title>
 
-      <SimpleGrid cols={2} mt="xl">
-        <TextInput
+      <TextInput
           label="Name"
           placeholder="Your name"
           name="name"
@@ -41,35 +41,34 @@ export function Register() {
           placeholder="Your email"
           name="email"
           variant="filled"
+          inputMode='email'
           {...form.getInputProps('email')}
         />
-      </SimpleGrid>
 
-      <TextInput
-        label="Subject"
-        placeholder="Subject"
+      <PasswordInput
+        label="Password"
+        placeholder="Password"
         mt="md"
-        name="subject"
+        name="password"
         variant="filled"
-        {...form.getInputProps('subject')}
+        {...form.getInputProps('password')}
       />
-      <Textarea
+      <PasswordInput
+        label="Confirm Password"
+        placeholder="Password"
         mt="md"
-        label="Message"
-        placeholder="Your message"
-        maxRows={10}
-        minRows={5}
-        autosize
-        name="message"
+        name="confirmpassword"
         variant="filled"
-        {...form.getInputProps('message')}
+        {...form.getInputProps('confirmpassword')}
       />
 
       <Stack justify="center" mt="xl">
-        <Button type="submit" size="md">
-          Send message
+        <Button type="submit" >
+          Register
         </Button>
       </Stack>
     </form>
+    </Container>
+    
   );
 }
